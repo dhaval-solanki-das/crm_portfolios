@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+
+# Environment and Secrets (CRITICAL: Never commit environment files with keys)
+.env
+.env.local
+.env.*.local
+
+# Python cache & SQLite databases
+__pycache__/
+*.py[cod]
+*$py.class
+*.db
+*.sqlite
+*.sqlite3
+
+# Distribution and logs
+dist/
+build/
+*.log
+.DS_Store
+Thumbs.db
+
+# Sensitive local dumps / archives
+*.dump
+*.rar
+*.zip
+*.tar

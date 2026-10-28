@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexaOps AI — AI-Powered Business Operations Platform</title>
+  <meta name="description" content="One Intelligent Assistant. Every Business Operation. AI-powered business operations platform combining conversational intelligence, document OCR, voice automation, and role-based workflows." />
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Design System Stylesheets -->
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/ai-assistant.css" />
+  <link rel="stylesheet" href="assets/css/document-ocr.css" />
+  <link rel="stylesheet" href="assets/css/voice-ai.css" />
+  <link rel="stylesheet" href="assets/css/landing.css" />
+
+  <style>
+    /* Search result styling */
+    .search-result-item {
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .search-result-item:hover {
+      background: var(--color-card-subtle);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Persistent Demo Environment Notice Banner -->
+  <div class="demo-banner">
+    <div class="demo-banner-content">
+      <span class="demo-banner-badge">Portfolio Demo</span>
+      <span>Interactive Portfolio Demo — All business data is fictional.</span>
+    </div>
+    <div class="demo-banner-actions">
+      <a href="javascript:void(0)" class="demo-banner-link" onclick="window.NexaOpsApp?.navigateTo('landing')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        </svg>
+        Portfolio Presentation
+      </a>
+      <span style="color: rgba(255, 255, 255, 0.3);">|</span>
+      <button class="demo-reset-btn" id="demo-reset-trigger">Reset Data</button>
+    </div>
+  </div>
+
+  <!-- Landing View Presentation Container -->
+  <div id="landing-view-container"></div>
+
+  <!-- Main SaaS Application Shell -->
+  <div class="app-shell" id="app-shell" style="display: none;">
+    <!-- Persistent Sidebar -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+        </div>
+        <div class="brand-text-wrap">
+          <span class="brand-name">NexaOps AI</span>
+          <span class="brand-tagline">Business Operations</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Core Operations</span>
+        
+        <div class="nav-item active" data-view="dashboard">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <span>Overview Dashboard</span>
+        </div>
+
+        <div class="nav-item" data-view="assistant">
+          <div class="nav-icon" style="color: var(--color-primary);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <span>AI Assistant</span>
+          <span class="nav-badge highlight">Nexa AI</span>
+        </div>
+
+        <div class="nav-item" data-view="purchase-orders">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </div>
+          <span>Purchase Orders</span>
+          <span class="nav-badge warning">17 Pending</span>
+        </div>
+
+        <div class="nav-item" data-view="vendors">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            </svg>
+          </div>
+          <span>Vendors</span>
+        </div>
+
+        <div class="nav-item" data-view="inventory">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <span>Products & Inventory</span>
+        </div>
+
+        <div class="nav-item" data-view="warehouses">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <span>Warehouses</span>
+        </div>
+
+        <div class="nav-item" data-view="containers">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <span>Containers & Logistics</span>
+          <span class="nav-badge">31</span>
+        </div>
+
+        <span class="nav-section-title">AI Automation</span>
+
+        <div class="nav-item" data-view="documents">
+          <div class="nav-icon" style="color: var(--color-teal);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <span>Document Intelligence</span>
+          <span class="nav-badge" style="background: var(--color-teal-light); color: var(--color-teal);">OCR</span>
+        </div>
+
+        <div class="nav-item" data-view="voice">
+          <div class="nav-icon" style="color: var(--color-error);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/>
+            </svg>
+          </div>
+          <span>Voice AI</span>
+          <span class="nav-badge" style="background: var(--color-error-bg); color: var(--color-error);">Live</span>
+        </div>
+
+        <span class="nav-section-title">Administration</span>
+
+        <div class="nav-item" data-view="reports">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <span>Reports & Analytics</span>
+        </div>
+
+        <div class="nav-item" data-view="users">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <span>User Governance</span>
+          <span class="nav-badge">RBAC</span>
+        </div>
+
+        <div class="nav-item" data-view="settings">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </div>
+          <span>Settings</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="user-avatar" id="sidebar-user-avatar">AW</div>
+          <div class="user-meta">
+            <span class="user-name" id="sidebar-user-name">Alexandra Wright</span>
+            <span class="user-role-label" id="sidebar-user-role">Enterprise Administrator</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Navigation Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+          <h1 class="page-title-heading" id="topbar-page-title">Overview Dashboard</h1>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Global Search Button -->
+          <button class="global-search-btn" id="global-search-trigger">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <span>Search records, SKUs...</span>
+            <span class="search-shortcut">⌘K</span>
+          </button>
+
+          <!-- Interactive Role Selector Dropdown -->
+          <div class="role-selector-wrap" title="Switch between fictional roles to test role-based access control and AI data isolation">
+            <span class="role-selector-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/>
+              </svg>
+              Role:
+            </span>
+            <select class="role-selector-select" id="topbar-role-select">
+              <option value="admin">Admin (Full Access)</option>
+              <option value="operations">Office / Operations</option>
+              <option value="vendor">Vendor (Northstar Supply)</option>
+              <option value="warehouse">Warehouse (East Coast Hub)</option>
+              <option value="logistics">Logistics (Freight Specialist)</option>
+            </select>
+          </div>
+
+          <!-- Notification Bell -->
+          <div style="position: relative;">
+            <button class="icon-action-btn" id="notifications-btn" title="Operational Alerts">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              <span class="notif-dot"></span>
+            </button>
+
+            <!-- Notifications Dropdown Popover -->
+            <div class="notifications-popover" id="notifications-popover">
+              <div class="notifications-header">
+                <strong style="font-size: 13px; color: var(--color-navy);">Operational Notifications</strong>
+                <span class="badge badge-info">3 New</span>
+              </div>
+              <div class="notifications-list">
+                <div class="notification-item unread">
+                  <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                    <strong style="color: var(--color-navy);">Container CONT-US-6210 Docked</strong>
+                    <span style="color: var(--color-text-muted);">10m ago</span>
+                  </div>
+                  <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 2px;">
+                    Ever Ace has docked at West Coast Gateway terminal Pier T.
+                  </p>
+                </div>
+                <div class="notification-item unread">
+                  <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                    <strong style="color: var(--color-warning);">PO-DEMO-1005 Needs Approval</strong>
+                    <span style="color: var(--color-text-muted);">35m ago</span>
+                  </div>
+                  <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 2px;">
+                    Requisition for $6,400.00 from Pacific Rim Industrial requires executive sign-off.
+                  </p>
+                </div>
+                <div class="notification-item">
+                  <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                    <strong style="color: var(--color-error);">DEMO-522 Safety Threshold Alert</strong>
+                    <span style="color: var(--color-text-muted);">2h ago</span>
+                  </div>
+                  <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 2px;">
+                    Stock level is currently 14 units (Safety threshold: 40 units).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prominent "Try AI Assistant" Button -->
+          <button class="btn-try-ai" id="btn-try-ai-top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            Try AI Assistant
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Dynamic Content Viewport -->
+      <main class="content-area" id="content-viewport">
+        <!-- Rendered dynamically by App -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Global Floating AI Launcher Widget -->
+  <div class="floating-ai-launcher" id="floating-ai-launcher" style="display: none;" title="Open Nexa AI Assistant">
+    <div class="floating-ai-pulse"></div>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <span>Nexa AI</span>
+  </div>
+
+  <!-- Global Search Command Palette Modal (Ctrl+K) -->
+  <div class="modal-overlay" id="global-search-modal">
+    <div class="modal-content" style="max-width: 580px; padding: 0;">
+      <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: 12px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary);">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input 
+          type="text" 
+          id="global-search-input" 
+          placeholder="Type to search PO numbers, vendors, SKUs, containers..." 
+          style="border: none; outline: none; width: 100%; font-size: 15px; color: var(--color-navy); background: transparent;" 
+          autocomplete="off"
+        />
+        <button class="modal-close-btn" id="global-search-close">ESC</button>
+      </div>
+      <div id="global-search-results" style="max-height: 380px; overflow-y: auto; padding: 8px;">
+        <!-- Results rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Application Script (ES Module) -->
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

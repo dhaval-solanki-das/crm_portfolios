@@ -1,0 +1,170 @@
+/**
+ * NexaOps AI - Document Intelligence & OCR Styles
+ */
+
+.ocr-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Sample Document Selector Bar */
+.ocr-samples-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.ocr-sample-chip {
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-card-subtle);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ocr-sample-chip:hover {
+  border-color: var(--color-primary);
+  background: #FFFFFF;
+  color: var(--color-primary);
+}
+
+.ocr-sample-chip.active {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+/* Upload Zone */
+.ocr-upload-zone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  background: #FFFFFF;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.ocr-upload-zone:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.upload-icon {
+  width: 44px;
+  height: 44px;
+  color: var(--color-primary);
+  margin: 0 auto 10px auto;
+}
+
+.upload-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.upload-subtitle {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+/* Side-by-Side Document Inspection Split */
+.ocr-inspection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Document Visualizer Panel */
+.doc-visual-panel {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.doc-canvas {
+  background: #F8FAFC;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  min-height: 420px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: #1E293B;
+  position: relative;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.doc-highlight-box {
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px dashed var(--color-primary);
+  border-radius: var(--radius-xs);
+  padding: 1px 4px;
+  display: inline;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Extracted Data Form Panel */
+.doc-extracted-panel {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.confidence-meter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--color-teal-light);
+  border: 1px solid rgba(15, 118, 110, 0.2);
+  border-radius: var(--radius-md);
+}
+
+.confidence-score {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-teal);
+}
+
+.field-confidence-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+@media (max-width: 1024px) {
+  .ocr-inspection-grid {
+    grid-template-columns: 1fr;
+  }
+}
