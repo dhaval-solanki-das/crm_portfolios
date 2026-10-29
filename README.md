@@ -169,7 +169,7 @@ uvicorn app.main:app --reload --port 8000
 
 - **Developer:** Dhaval Solanki (AI/ML & Full-Stack Solutions Engineer)
 - **GitHub:** [github.com/dhaval-solanki-das](https://github.com/dhaval-solanki-das)
-- **Project Inquiry Email:** [solankidhaval355@gmail.com](mailto:solankidhaval355@gmail.com?subject=Inquiry:%20NexaOps%20AI%20Custom%20Development)
+- **Project Inquiry Email:** [dhavalsolanki480@gmail.com](mailto:dhavalsolanki480@gmail.com?subject=Inquiry:%20NexaOps%20AI%20Custom%20Development)
 
 ---
 *NexaOps AI — Interactive Portfolio Demo. All business data is fictional.*

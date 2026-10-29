@@ -389,7 +389,7 @@ export class LandingView {
             </p>
 
             <div class="conversion-ctas">
-              <a href="mailto:solankidhaval355@gmail.com?subject=Project%20Inquiry:%20Custom%20AI%20Business%20Operations%20Platform" class="btn btn-primary btn-lg" style="background: #2563EB;">
+              <a href="mailto:dhavalsolanki480@gmail.com?subject=Project%20Inquiry:%20Custom%20AI%20Business%20Operations%20Platform" class="btn btn-primary btn-lg" style="background: #2563EB;">
                 Discuss Your Project
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
@@ -405,6 +405,41 @@ export class LandingView {
             </p>
           </div>
         </section>
+        <!-- Video Walkthrough Modal -->
+        <div class="modal-overlay" id="walkthrough-video-modal">
+          <div class="modal-content" style="max-width: 860px; padding: 0; background: #0F172A; color: #FFF; overflow: hidden; border-color: rgba(255,255,255,0.15);">
+            <div style="padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; background: #1E293B;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFF"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+                <div>
+                  <h3 style="font-size: 15px; font-weight: 700; color: #FFF; margin: 0;" id="video-title-display">Product Walkthrough — NexaOps AI Assistant</h3>
+                  <span style="font-size: 11px; color: #94A3B8;">Executive Demonstration (MP4 Format)</span>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <select id="video-version-select" style="background: #334155; color: #FFF; border: 1px solid #475569; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">
+                  <option value="assets/videos/NexaOps_AI_Business_Assistant_Demo.mp4">Quick Overview Demo (2.5 min)</option>
+                  <option value="assets/videos/NexaOps_AI_Business_Assistant_Advanced_Demo.mp4">Advanced Deep-Dive (4.5 min)</option>
+                </select>
+                <button class="modal-close-btn" id="walkthrough-modal-close" style="color: #FFF; font-size: 16px;">✕</button>
+              </div>
+            </div>
+            <div style="position: relative; background: #000; display: flex; justify-content: center; align-items: center; min-height: 440px;">
+              <video id="portfolio-demo-video" controls style="width: 100%; max-height: 480px; display: block;" poster="assets/videos/demo_thumb.jpg">
+                <source src="assets/videos/NexaOps_AI_Business_Assistant_Demo.mp4" type="video/mp4" />
+                Your browser does not support HTML5 MP4 video.
+              </video>
+            </div>
+            <div style="padding: 12px 20px; background: #1E293B; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #94A3B8;">
+              <span>Interactive Portfolio Demonstration • All business records are fictional.</span>
+              <a href="assets/videos/NexaOps_AI_Business_Assistant_Demo.mp4" download="NexaOps_AI_Business_Assistant_Demo.mp4" class="btn btn-sm btn-outline" style="border-color: #64748B; color: #93C5FD; padding: 4px 10px;">
+                Download .mp4 File ⤓
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     `;
 
@@ -421,8 +456,33 @@ export class LandingView {
     container.querySelector('#landing-contact-explore-btn')?.addEventListener('click', () => {
       if (typeof onNavigateToApp === 'function') onNavigateToApp('assistant');
     });
+
+    // Video modal handlers
+    const videoModal = container.querySelector('#walkthrough-video-modal');
+    const videoEl = container.querySelector('#portfolio-demo-video');
+    const videoSelect = container.querySelector('#video-version-select');
+    const modalClose = container.querySelector('#walkthrough-modal-close');
+
     container.querySelector('#landing-walkthrough-btn')?.addEventListener('click', () => {
-      alert("Product Walkthrough: You are looking at the live interactive portfolio! Click 'Explore Live Demo' to test all interactive AI workflows, document OCR, voice operations, and role switching.");
+      videoModal?.classList.add('active');
+      videoEl?.play();
+    });
+
+    const closeVideo = () => {
+      videoModal?.classList.remove('active');
+      videoEl?.pause();
+    };
+
+    modalClose?.addEventListener('click', closeVideo);
+    videoModal?.addEventListener('click', (e) => {
+      if (e.target === videoModal) closeVideo();
+    });
+
+    videoSelect?.addEventListener('change', (e) => {
+      if (videoEl) {
+        videoEl.src = e.target.value;
+        videoEl.play();
+      }
     });
   }
 }
